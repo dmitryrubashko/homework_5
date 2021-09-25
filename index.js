@@ -22,18 +22,38 @@ const getPokemonFullInfo = async (pokemonName) => {
 
 getPokemonFullInfo('charmander').then(data => console.log(data));
 
+const showPokemon = async (pokemon) => {
 
-const divPokemon = document.querySelector('.pokemon');
+    try {
+        const {id, name, stats} = await getPokemonFullInfo(pokemon);
 
-const h1Heading = document.createElement('h1');
-const h2Heading = document.createElement('h2');
+        const divPokemon = document.querySelector('.pokemon');
+        const h1Heading = document.createElement('h1');
+        const h2Heading = document.createElement('h2');
+        const ulPokemonStats = document.createElement('ul');
+        h1Heading.innerText = `${name} (${id})`;
+        const statsInfo = Object.entries(stats);
+        statsInfo.forEach(([stat, value]) => {
+            const liStats =document.createElement('li');
 
-divPokemon.append(h1Heading, h2Heading)
+            liStats.innerText = `${stat}: ${value}`;
+            ulPokemonStats.append(liStats)
+        })
+        h2Heading.append(ulPokemonStats)
+        divPokemon.append(h1Heading, h2Heading)
 
-h1Heading.innerText = '2ttt31'
+    } catch (error) {
+
+    }
+
+}
+
+showPokemon('charmander')
 
 
-console.log (divPokemon)
+
+
+
 
 
 
