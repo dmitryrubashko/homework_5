@@ -50,6 +50,43 @@ const showPokemon = async (pokemon) => {
 
 showPokemon('charmander')
 
+// task_2
+
+const numbersArray = [4, -5, 7, 10, 0, -2];
+
+Array.prototype.myMap = function(callbackFunction) {
+    const result = [];
+    for (let i = 0; i < this.length; i++) {
+        result.push(callbackFunction(this[i]))
+    }
+    return result
+}
+
+const getCubeNumbersArray = numbersArray.myMap(function(number) {
+    return number**3
+})
+
+console.log (getCubeNumbersArray);
+
+// task_3
+
+Array.prototype.myFilter = function(callbackFunction) {
+    const numbersArray = [];
+    for (let i = 0; i < this.length; i++) {
+        const result = callbackFunction(this[i]);
+        if (result) {
+            numbersArray.push(this[i])
+        }
+    }
+    return numbersArray
+}
+
+const getFilteredArray = numbersArray.myFilter(function(number) {
+    return number >= 0;
+})
+
+console.log(getFilteredArray)
+
 
 
 
